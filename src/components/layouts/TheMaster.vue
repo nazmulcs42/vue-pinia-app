@@ -1,7 +1,7 @@
 <template>
     <main>
         <h5>Hello, <span class="text-info">Guys!</span> Welcome to Pinia State Manager.</h5>
-        <slots></slots>
+        <router-view></router-view>
     </main>
 </template>
 

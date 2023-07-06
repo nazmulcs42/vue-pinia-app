@@ -1,7 +1,7 @@
 <template>
     <footer class="w-100 text-center">
         <hr>
-        @2023 All copyright reserved.
+        <small>@2023 All copyright reserved.</small>
     </footer>
 </template>
 
