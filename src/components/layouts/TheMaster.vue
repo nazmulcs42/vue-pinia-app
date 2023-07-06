@@ -19,6 +19,6 @@ export default {
 
 <style scoped>
     main {
-        min-height: 78.5vh;
+        min-height: 69.6vh;
     }
 </style>

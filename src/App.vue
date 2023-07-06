@@ -1,5 +1,5 @@
 <template>
-  <div class="app-content container-fluid bg-secondary text-white p-3">
+  <div class="app-content container bg-secondary text-white p-3">
       <the-header></the-header>
       <the-master></the-master>
       <the-modal></the-modal>
