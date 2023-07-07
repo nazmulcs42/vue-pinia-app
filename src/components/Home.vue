@@ -1,13 +1,13 @@
 <template>
     <div>
         <AddTodoForm></AddTodoForm>
-        <TodosViewTable></TodosViewTable>
+        <Todos></Todos>
     </div>
 </template>
 
 <script>
 import AddTodoForm from './todos/AddTodoForm.vue'
-import TodosViewTable from './todos/TodosViewTable.vue'
+import Todos from './todos/Todos.vue'
 
 export default {
     setup () {
@@ -17,7 +17,7 @@ export default {
             name,
         }
     },
-    components: { TodosViewTable, AddTodoForm }
+    components: { Todos, AddTodoForm }
 }
 </script>
 
