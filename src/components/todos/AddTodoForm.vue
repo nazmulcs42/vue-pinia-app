@@ -1,7 +1,7 @@
 <template>
     <div class="col-md-12 mt-5">
         <!-- <h5 class="text-center text-info mb-3 w-25">New Todo Form</h5> -->
-        <form method="POST" @submit="onSubmit" @reset="onReset" id="AddNewTodoFormId" >
+        <form method="POST" @submit.prevent="onSubmit" @reset="onReset" id="AddNewTodoFormId" >
             <div class="row">
                 <div class="input-group mb-3">
                     <input type="text" class="form-control" name="title" value="" placeholder="Enter Task Name" aria-label="Enter Task Name" aria-describedby="basic-addon2">
@@ -16,32 +16,51 @@
 </template>
 
 <script>
-import axios from "axios"
+import { useTodosStore } from '../../stores/todos'
 
 export default {
     setup () {
         const name = "Add Todo Form"
 
         return {
-            name,
+            name
         }
     },
     methods: {
       onSubmit(event) {
-        event.preventDefault()
-        const task = {
-            title: event.target.title.value,
+        const form = event.target;
+        const title = form.title.value;
+        const newTodo = {
+            userId: 1,
+            title: title,
             completed: false
-        }
-        // implement pinia actions method call for add new todo item.
-        //const response = axios.post("https://jsonplaceholder.typicode.com/todos", task);
-        event.target.reset()
+        };
+
+        const todosStore = useTodosStore();
+        const response = todosStore.addTodo(newTodo);
+        console.log(response);
+        form.reset();
+
+      },
+      onSubmit_(event) {
+        const form = event.target;
+        const title = form.title.value;
+        const newTodo = {
+            userId: 1,
+            title: title,
+            completed: false
+        };
+
+        const todosStore = useTodosStore();
+        const response = todosStore.addTodo(newTodo);
+        response.then(res => {
+            todosStore.todos.unshift(res.data);
+        })
+        form.reset();
 
       },
       onReset(event) {
-        event.preventDefault()
-        event.target.reset()
-        // event.target.title.value = ""
+        event.target.reset();
       }
     }
 }

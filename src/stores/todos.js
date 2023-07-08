@@ -1,36 +1,11 @@
 import { defineStore } from "pinia";
+import axios from "axios"
 
 
 export const useTodosStore  = defineStore("todosStore", {
     state: () => {
         return {
-            todos: [
-                {
-                    id: 1,
-                    title: "Morning walking at 6.30 am",
-                    completed: true
-                },
-                {
-                    id: 2,
-                    title: "Breakfast at 8.30 am",
-                    completed: false
-                },
-                {
-                    id: 3,
-                    title: "Going to school at 9.30 am",
-                    completed: true
-                },
-                {
-                    id: 4,
-                    title: "Having lunch at 2.00 pm",
-                    completed: false
-                },
-                {
-                    id: 5,
-                    title: "Coming back to home",
-                    completed: false
-                },
-            ],
+            todos: [],
             todo: []
         }
     },
@@ -52,5 +27,94 @@ export const useTodosStore  = defineStore("todosStore", {
             }, 0)
         },
         totalTodosCount: state => state.todos.length
+    },
+    actions: {
+
+        // View
+        async getTodoList () {
+            const response = await axios.get("https://jsonplaceholder.typicode.com/todos");
+            if(response.data.length > 0) {
+                this.todos = response.data;
+                console.log("Data fetched successfully.", response.data);
+                return true;
+            }
+            console.log("Data failed to fetch.");
+            return false;
+        },
+
+         // View Details
+         async getTodoDetails (todoId) {
+            const response = await axios.get(`https://jsonplaceholder.typicode.com/todos/${todoId}`);
+            if(response.data) {
+                this.todo = response.data;
+                console.log("Data fetched successfully.", response.data);
+                return response.data;
+            }
+            console.log("Data failed to fetch.");
+            return false;
+        },
+
+        // Add
+        async addTodo (payload) {
+            const response = await axios.post("https://jsonplaceholder.typicode.com/todos", payload);
+            if(response.data.id) {
+                this.todos.push(response.data);
+                console.log("New data saved successfully.", response.data);
+                return true;
+            }
+            console.log("Data failed to save.", payload);
+            return false;
+        },
+        addTodo_: async (payload) => {
+            const response = await axios.post("https://jsonplaceholder.typicode.com/todos", payload);
+            
+            if(response.data.id) {
+                return { 
+                    success: true, 
+                    message: "New data saved successfully.", 
+                    data: response.data
+                };
+            }
+            
+            return { 
+                success: true, 
+                message: "New data failed to save.", 
+                data: {}
+            };
+        },
+
+        // Edit
+        async updateTodo (todoId, payload) {
+            const response = await axios.patch(`https://jsonplaceholder.typicode.com/todos/${todoId}`, payload);
+            const index = this.todos.findIndex(todo => todo.id === todoId)
+            if(index !== -1) {
+                this.todos.splice(index, 1, response.data)
+            }
+            // this.todos = this.todos.filter(todo => todo.id !== todoId);
+
+
+        /*     const index = state.posts.findIndex(post => post.id === payload.id)
+            if(index !== -1) {
+                state.posts.splice(index, 1, payload)
+            } */
+            console.log("Data updated successfully.", response.data);
+            return true;
+        },
+
+        // Change Status
+        async updateTodoStatus (todoId) {
+            await axios.patch(`https://jsonplaceholder.typicode.com/todos/${todoId}`);
+            // this.todos = this.todos.filter(todo => todo.id !== todoId);
+            console.log("Data updated successfully.");
+            return true;
+        },
+
+        //Delete
+        async removeTodo (todoId) {
+            await axios.delete(`https://jsonplaceholder.typicode.com/todos/${todoId}`);
+            this.todos = this.todos.filter(todo => todo.id !== todoId);
+            console.log("Data deleted successfully.");
+            return true;
+        }
     }
 })

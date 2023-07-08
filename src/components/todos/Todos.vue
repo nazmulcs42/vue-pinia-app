@@ -16,8 +16,8 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="todo in todosStore.todos" :key="todo.id">
-              <td class="text-center">{{ todo.id }}</td>
+            <tr v-for="(todo, index) in todosStore.todos" :key="index">
+              <td class="text-center">{{ index + 1 }}</td>
               <td>{{ todo.title }}</td>
               <td class="text-center pt-3">
                 <span class="alert alert-success py-2" v-if="todo.completed == true">Finished</span>
@@ -26,8 +26,8 @@
               <td class="text-center">
                 <button class="btn btn-sm btn-outline-info m-1">Change</button>
                 <button class="btn btn-sm btn-outline-success m-1">View</button>
-                <button class="btn btn-sm btn-outline-primary m-1">Edit</button>
-                <button class="btn btn-sm btn-outline-danger m-1">Delete</button>
+                <button class="btn btn-sm btn-outline-primary m-1" @click="editTodo(todo.id)">Edit</button>
+                <button class="btn btn-sm btn-outline-danger m-1" @click="deleteTodo(todo.id)">Delete</button>
               </td>
             </tr>
           </tbody>
@@ -38,22 +38,57 @@
 </template>
 
 <script>
-import { useTodosStore } from '../../stores/todos'
+import { useTodosStore } from '../../stores/todos';
+import { useRouter } from 'vue-router';
+
 
 
 export default {
+  
     setup () {
         const name = "Todos View Table";
         const todosStore = useTodosStore();
+        const router = useRouter();
 
+        const editTodo = (todoId) => {
+              router.push({ name: 'edit', params: { id: todoId } });
+              // todosStore.updateTodo(todoId, {title: "nnnn"})
+              // todosStore.todo = todosStore.todos.find(todo => todo.id === todoId);
+        };
+        const deleteTodo = (todoId) => {
+            if(confirm("Are you sure?")){
+              todosStore.removeTodo(todoId);
+            }
+        }
         return {
             name,
-            todosStore
+            todosStore,
+            editTodo,
+            deleteTodo
         }
-    }
+    },
+    methods: {
+      // editTodo: (todoId) => {
+      //       const router = useRouter();
+      //       router.push({ name: 'edit', params: { id: todoId } });
+      //       // const todosStore = useTodosStore();
+      //       // todosStore.updateTodo(todoId, {title: "nnnn"})
+      //       // todosStore.todo = todosStore.todos.find(todo => todo.id === todoId);
+      // },
+      // deleteTodo : (todoId) => {
+      //     if(confirm("Are you sure?")){
+      //       const todosStore = useTodosStore();
+      //       todosStore.removeTodo(todoId);
+      //     }
+      // }
+    },
+    created () {
+      const todosStore = useTodosStore();
+      todosStore.getTodoList();
+    },
 }
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 
 </style>
