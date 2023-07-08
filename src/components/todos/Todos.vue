@@ -24,8 +24,8 @@
                 <span class="alert alert-danger py-2" v-if="todo.completed == false">Pending</span>
               </td>
               <td class="text-center">
-                <button class="btn btn-sm btn-outline-info m-1">Change</button>
-                <button class="btn btn-sm btn-outline-success m-1">View</button>
+                <button class="btn btn-sm btn-outline-info m-1" @click="changeTodoStatus(todo.id)">Change</button>
+                <button class="btn btn-sm btn-outline-success m-1" @click="viewTodo(todo.id)">View</button>
                 <button class="btn btn-sm btn-outline-primary m-1" @click="editTodo(todo.id)">Edit</button>
                 <button class="btn btn-sm btn-outline-danger m-1" @click="deleteTodo(todo.id)">Delete</button>
               </td>
@@ -44,14 +44,14 @@ import { useRouter } from 'vue-router';
 
 
 export default {
-  
+
     setup () {
         const name = "Todos View Table";
         const todosStore = useTodosStore();
         const router = useRouter();
 
         const editTodo = (todoId) => {
-              router.push({ name: 'edit', params: { id: todoId } });
+              router.push({ name: 'Edit', params: { id: todoId } });
               // todosStore.updateTodo(todoId, {title: "nnnn"})
               // todosStore.todo = todosStore.todos.find(todo => todo.id === todoId);
         };
@@ -59,12 +59,22 @@ export default {
             if(confirm("Are you sure?")){
               todosStore.removeTodo(todoId);
             }
+        };
+        const changeTodoStatus = (todoId) => {
+          if(confirm("Are you sure?")){
+            todosStore.updateTodoStatus(todoId)
+          }
+        };
+        const viewTodo = (todoId) => {
+          router.push({ name: 'Details', params: { id: todoId } });
         }
         return {
             name,
             todosStore,
             editTodo,
-            deleteTodo
+            deleteTodo,
+            changeTodoStatus,
+            viewTodo
         }
     },
     methods: {

@@ -47,8 +47,8 @@ export const useTodosStore  = defineStore("todosStore", {
             const response = await axios.get(`https://jsonplaceholder.typicode.com/todos/${todoId}`);
             if(response.data) {
                 this.todo = response.data;
-                console.log("Data fetched successfully.", response.data);
-                return response.data;
+                console.log("Data fetched successfully.", this.todo);
+                return this.todo;
             }
             console.log("Data failed to fetch.");
             return false;
@@ -103,8 +103,12 @@ export const useTodosStore  = defineStore("todosStore", {
 
         // Change Status
         async updateTodoStatus (todoId) {
-            await axios.patch(`https://jsonplaceholder.typicode.com/todos/${todoId}`);
-            // this.todos = this.todos.filter(todo => todo.id !== todoId);
+            // const todo = this.todos.filter(todo => todo.id === todoId);
+            const response = await axios.patch(`https://jsonplaceholder.typicode.com/todos/${todoId}`,{ completed: true/* !todo.completed */});
+            const index = this.todos.findIndex(todo => todo.id === todoId)
+            if(index !== -1) {
+                this.todos.splice(index, 1, response.data)
+            }
             console.log("Data updated successfully.");
             return true;
         },

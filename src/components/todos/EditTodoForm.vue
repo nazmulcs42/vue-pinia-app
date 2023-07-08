@@ -1,21 +1,24 @@
 <template>
-    <div class="col-md-12 mt-5">
-        <h5 class="text-center text-info mb-3">Update Todo Form</h5>
+    <div class="col-md-12 mt-5 w-50 mx-auto">
+        <!-- <h5 class="text-start text-info mb-3">Update Todo Form</h5> -->
         <form method="PATCH" @submit.prevent="updateFormData" @reset="onReset" id="editNewTodoFormId" >
+            <fieldset>
+                <legend class="text-start text-info mb-3">Update Todo Form:</legend>
             <div class="row">
                 <div class="mb-3">
-                    <label for="title" class="form-label">Title</label>
+                    <label for="title" class="form-label mx-2">Task Title</label>
                     <input 
                         type="text" 
                         class="form-control" 
                         id="title" 
-                        v-model="title" 
+                        v-model="todosStore.todo.title" 
                         placeholder="Enter Task Name" 
                         aria-label="Enter Task Name"
                     >
                 </div>
-                <button type="submit" class="btn btn-primary">Save Changes</button>
+                <button type="submit" class="btn btn-md btn-outline-warning px-4 mx-3 w-25">Save Changes</button>
             </div>
+            </fieldset>
         </form>
     </div>
 </template>
@@ -48,10 +51,10 @@ export default {
     created () {
         const todosStore = useTodosStore();
         const todo  = todosStore.getTodoDetails(this.todoId);
-        todo.then(data => {
-            const titleField = document.getElementById("title");
-            titleField.value  = data.title;
-        });
+        // todo.then(data => {
+        //     const titleField = document.getElementById("title");
+        //     titleField.value  = data.title;
+        // });
     },
     methods: {
       onSubmit(event) {
