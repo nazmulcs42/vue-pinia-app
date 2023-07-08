@@ -1,1 +1,1 @@
-# Pinia State Management
+# Pinia State Manager
