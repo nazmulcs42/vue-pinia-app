@@ -1,6 +1,7 @@
 <template>
     <div class="mt-3">
       <h5 class="text-center">Daily Task List</h5>
+      <!-- <button class="btn btn-outline-warning" @click="todosStore.$reset">Reset</button> -->
       <!-- <button type="button" class="btn btn-md btn-outline-info text-white w-5 ml-auto" data-toggle="modal" data-target="#exampleModalLong">Add New Todo</button> -->
       <span class="badge text-bg-warning mx-1">Total : {{  todosStore.totalTodosCount }}</span>
       <span class="badge text-bg-warning mx-1">Completed : {{  todosStore.completedTodosCount }}</span>
