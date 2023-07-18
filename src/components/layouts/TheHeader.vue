@@ -25,7 +25,8 @@
                         <ul class="dropdown-menu">
                             <li><router-link class="dropdown-item" to="/todos">Task Manager</router-link></li>
                             <li><router-link class="dropdown-item" to="/posts">Post Manager</router-link></li>
-                            <li><router-link class="dropdown-item" to="/calendar">Calendar</router-link></li>
+                            <li><router-link class="dropdown-item" to="/manager/calendar">Calendar</router-link></li>
+                            <li><router-link class="dropdown-item" to="/manager/markdown">Markdown</router-link></li>
                             <li><hr class="dropdown-divider"></li>
                             <li><router-link class="dropdown-item" to="/settings">Settings</router-link></li>
                         </ul>
