@@ -6,7 +6,7 @@ export const useTodosStore  = defineStore("todosStore", {
     state: () => {
         return {
             todos: [],
-            todo: []
+            todo: {}
         }
     },
     getters: {

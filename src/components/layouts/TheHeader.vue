@@ -20,6 +20,18 @@
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Managers
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><router-link class="dropdown-item" to="/todos">Task Manager</router-link></li>
+                            <li><router-link class="dropdown-item" to="/posts">Post Manager</router-link></li>
+                            <li><router-link class="dropdown-item" to="/calendar">Calendar</router-link></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><router-link class="dropdown-item" to="/settings">Settings</router-link></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Bookings
                         </a>
                         <ul class="dropdown-menu">
@@ -32,6 +44,9 @@
                     </li>
                     <li class="nav-item">
                         <router-link to="/contacts" class="nav-link" aria-current="page">Contacts</router-link>
+                    </li>
+                    <li class="nav-item">
+                        <router-link to="/demo/test" class="nav-link" aria-current="page">Demo Test</router-link>
                     </li>
                 </ul>
                 <form class="d-flex" role="search">
