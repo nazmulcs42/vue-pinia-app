@@ -24,6 +24,30 @@
 import { ref } from 'vue'; 
 
 export default {
+    beforeCreate(){
+        console.log("Before Created")
+    },
+    created(){
+        console.log("Created")
+    },
+    beforeMount(){
+        console.log("Before Mounted")
+    },
+    mounted(){
+        console.log("Mounted")
+    },
+    beforeUpdate(){
+        console.log("Before Update")
+    },
+    updated(){
+        console.log("Updated")
+    },
+    beforeUnmount(){
+        console.log("Before Unmounted")
+    },
+    unmounted(){
+        console.log("Unmounted")
+    },
     setup () {
         const counter =  ref(0)
 
@@ -33,7 +57,6 @@ export default {
     },
     methods: {
         counterIncrement(){
-            console.log(this.counter)
             this.counter = this.counter + 1;
         },
         counterDecrement(){

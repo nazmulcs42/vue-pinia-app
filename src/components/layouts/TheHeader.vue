@@ -23,11 +23,11 @@
                             Managers
                         </a>
                         <ul class="dropdown-menu">
-                            <li><router-link class="dropdown-item" to="/todos">Task Manager</router-link></li>
-                            <li><router-link class="dropdown-item" to="/posts">Post Manager</router-link></li>
-                            <li><router-link class="dropdown-item" to="/manager/calendar">Calendar</router-link></li>
-                            <li><router-link class="dropdown-item" to="/manager/markdown">Markdown</router-link></li>
-                            <li><router-link class="dropdown-item" to="/manager/debounce">Debounce</router-link></li>
+                            <li><router-link class="dropdown-item" to="/todos">Tasks</router-link></li>
+                            <li><router-link class="dropdown-item" to="/posts">Posts</router-link></li>
+                            <li><router-link class="dropdown-item" to="/calendar">Calendar</router-link></li>
+                            <!-- <li><router-link class="dropdown-item" to="/manager/markdown">Markdown</router-link></li>
+                            <li><router-link class="dropdown-item" to="/manager/debounce">Debounce</router-link></li> -->
                             <li><hr class="dropdown-divider"></li>
                             <li><router-link class="dropdown-item" to="/settings">Settings</router-link></li>
                         </ul>
@@ -42,6 +42,16 @@
                             <!-- <li><router-link class="dropdown-item" to="/profile">Profile</router-link></li> -->
                             <li><hr class="dropdown-divider"></li>
                             <li><router-link class="dropdown-item" to="/settings">Settings</router-link></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Tools
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><router-link class="dropdown-item" to="/tools/markdown">Markdown</router-link></li>
+                            <li><router-link class="dropdown-item" to="/tools/debounce">Debounce</router-link></li>
+                            <li><router-link class="dropdown-item" to="/tools/carousel">Carousel</router-link></li>
                         </ul>
                     </li>
                     <li class="nav-item">

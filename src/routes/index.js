@@ -8,6 +8,7 @@ import CalendarVue from '../components/calendar/Calendar.vue';
 import Demo from "../components/demo/Demo.vue"
 import MarkdownVue from "../components/markdown/Markdown.vue"
 import DebounceVue from "../components/debounce/Debounce.vue"
+import CarouselVue from "../components/carousel/Carousel.vue"
 
 const routes = [
     { path: '/', component: Home },
@@ -29,13 +30,23 @@ const routes = [
         { path: 'details', name: "PostDetails", component: TodoDetails },
       ]
     },
+    { path: '/calendar', name: "Calendar", component: CalendarVue },
+    // { 
+    //   path: "/manager",
+    //   name: "Manager",
+    //   children:[
+    //     { path: 'calendar', name: "Calendar", component: CalendarVue },
+    //     { path: 'markdown', name: "Markdown", component: MarkdownVue },
+    //     { path: 'debounce', name: "Debounce", component: DebounceVue },
+    //   ]
+    // },
     { 
-      path: "/manager",
-      name: "Manager",
+      path: "/tools",
+      name: "Tools",
       children:[
-        { path: 'calendar', name: "Calendar", component: CalendarVue },
         { path: 'markdown', name: "Markdown", component: MarkdownVue },
         { path: 'debounce', name: "Debounce", component: DebounceVue },
+        { path: 'carousel', name: "Carousel", component: CarouselVue },
       ]
     },
     { path: '/demo/test', name: "Demo", component: Demo }
