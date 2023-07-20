@@ -7,6 +7,7 @@ import PostsVue from '../components/posts/Posts.vue';
 import CalendarVue from '../components/calendar/Calendar.vue';
 import Demo from "../components/demo/Demo.vue"
 import MarkdownVue from "../components/markdown/Markdown.vue"
+import DebounceVue from "../components/debounce/Debounce.vue"
 
 const routes = [
     { path: '/', component: Home },
@@ -34,6 +35,7 @@ const routes = [
       children:[
         { path: 'calendar', name: "Calendar", component: CalendarVue },
         { path: 'markdown', name: "Markdown", component: MarkdownVue },
+        { path: 'debounce', name: "Debounce", component: DebounceVue },
       ]
     },
     { path: '/demo/test', name: "Demo", component: Demo }
